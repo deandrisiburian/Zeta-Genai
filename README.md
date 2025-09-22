@@ -1,7 +1,7 @@
-Zeta GenAI - AI Assistant 🤖
+# Zeta GenAI - AI Assistant 🤖
 Zeta GenAI adalah asisten kecerdasan buatan (AI) generatif yang dibangun dengan teknologi mutakhir untuk membantu berbagai tugas sehari-hari seperti percakapan, penulisan konten, pemecahan masalah, dan banyak lagi.
 
-✨ Fitur Utama
+# ✨ Fitur Utama
 Percakapan Natural: Berinteraksi dengan AI dalam bahasa natural
 
 Multi-fungsi: Dukungan untuk berbagai tugas (menulis, analisis, coding, dll)
@@ -12,7 +12,7 @@ Fast Response: Waktu respons yang cepat dan efisien
 
 Customizable: Dapat disesuaikan untuk kebutuhan spesifik
 
-🚀 Cara Mulai
+# 🚀 Cara Mulai
 Prasyarat
 Python 3.8+
 
@@ -97,9 +97,9 @@ Buat Pull Request
 Distributed under the MIT License. Lihat LICENSE untuk informasi lebih lanjut.
 
 📞 Kontak
-Tim Pengembang - email@example.com
+Tim Pengembang - epandforbusinnes@gmail.com
 
-Project Link: https://github.com/username/zeta-genai
+Project Link: https://github.com/EpanD/zeta-genai
 
 🙏 Acknowledgments
 OpenAI
