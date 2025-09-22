@@ -63,11 +63,13 @@ response = assistant.chat("Halo, perkenalkan dirimu!")
 print(response)
 Advanced Features
 python
+
 # Multi-turn conversation
 conversation = assistant.start_conversation()
 conversation.add_message("user", "Apa itu machine learning?")
 conversation.add_message("assistant", "Machine learning adalah...")
 response = conversation.get_response()
+
 🔧 Konfigurasi
 Edit file config.yaml untuk menyesuaikan pengaturan:
 
@@ -80,7 +82,8 @@ model:
 ui:
   theme: "dark"
   language: "id"
-🤝 Kontribusi
+
+# 🤝 Kontribusi
 Kami menyambang kontribusi! Silakan:
 
 Fork project ini
@@ -93,15 +96,15 @@ Push ke branch (git push origin feature/AmazingFeature)
 
 Buat Pull Request
 
-📝 Lisensi
+# 📝 Lisensi
 Distributed under the MIT License. Lihat LICENSE untuk informasi lebih lanjut.
 
-📞 Kontak
+# 📞 Kontak
 Tim Pengembang - epandforbusinnes@gmail.com
 
 Project Link: https://github.com/EpanD/zeta-genai
 
-🙏 Acknowledgments
+# 🙏 Acknowledgments
 OpenAI
 
 Hugging Face
