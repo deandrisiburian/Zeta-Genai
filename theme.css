@@ -1,0 +1,71 @@
+/* CSS Variables for Theming */
+:root {
+  --macos-bg: #f5f5f7;
+  --macos-header: #ffffff;
+  --macos-sidebar: #f2f2f7;
+  --macos-card: #ffffff;
+  --macos-text: #1d1d1f;
+  --macos-chat-input: #f0f0f0;
+  --macos-text-secondary: #86868b;
+  --macos-border: #e5e5e7;
+  --macos-accent: #007aff;
+  --macos-hover: #f2f2f7;
+  --macos-menu: rgba(255, 255, 255, 0.8);
+  --ios-bg: #f2f2f7;
+  --ios-card: #ffffff;
+  --ios-text: #000000;
+  --ios-text-secondary: #8a8a8e;
+  --ios-border: #c6c6c8;
+  --ios-accent: #007aff;
+  --ios-hover: #e6e6e7;
+  --blur-effect: saturate(180%) blur(20px);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.3s ease;
+  --tran-05: all 0.3s ease;
+  --transition: 0.3s ease;
+}
+
+[data-theme="dark"] {
+  --macos-bg: #1c1c1e;
+  --macos-header: #2c2c2e;
+  --macos-sidebar: #2c2c2e;
+  --macos-card: #2c2c2e;
+  --macos-chat-input: #3a3a3a;
+  --macos-text: #ffffff;
+  --macos-text-secondary: #98989d;
+  --macos-border: #404044;
+  --macos-accent: #0a84ff;
+  --macos-hover: #3a3a3c;
+  --macos-menu: rgba(44, 44, 46, 0.8);
+  --ios-bg: #000000;
+  --ios-card: #1c1c1e;
+  --ios-text: #ffffff;
+  --ios-text-secondary: #8e8e93;
+  --ios-border: #38383a;
+  --ios-accent: #0a84ff;
+  --ios-hover: #2c2c2e;
+}
+
+/* Custom theme classes */
+.light-theme {
+  /* Light theme akan menggunakan variabel :root default */
+}
+
+.dark-theme {
+  /* Dark theme akan menggunakan variabel [data-theme="dark"] */
+}
+
+.auto-theme {
+  /* Auto theme akan menggunakan preferensi sistem */
+}
+
+@media (prefers-color-scheme: dark) {
+  .auto-theme {
+    /* Gunakan variabel dark theme jika sistem dalam mode gelap */
+  }
+}
