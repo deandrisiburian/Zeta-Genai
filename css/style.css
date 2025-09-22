@@ -1,8 +1,21 @@
-/* Reset and Base Styles */
+/* =====================
+   Reset & Base Styles
+===================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:root {
+  --macos-bg: #f9f9f9;
+  --macos-text: #1f1f1f;
+  --macos-sidebar: #f2f2f2;
+  --macos-border: #d0d0d0;
+
+  --color-close: #ff5f56;
+  --color-minimize: #ffbd2e;
+  --color-maximize: #27c93f;
 }
 
 body {
@@ -16,15 +29,17 @@ body {
   flex-direction: column;
 }
 
-/* macOS Titlebar */
+/* =====================
+   macOS Titlebar
+===================== */
 .macos-titlebar {
   height: 38px;
   background-color: #e8e8e8;
   display: flex;
   align-items: center;
   padding: 0 12px;
+  border-bottom: 1px solid var(--macos-border);
   -webkit-app-region: drag;
-  border-bottom: 1px solid #d0d0d0;
 }
 
 .window-controls {
@@ -39,9 +54,9 @@ body {
   border-radius: 50%;
 }
 
-.control.close { background-color: #ff5f56; }
-.control.minimize { background-color: #ffbd2e; }
-.control.maximize { background-color: #27c93f; }
+.control.close { background-color: var(--color-close); }
+.control.minimize { background-color: var(--color-minimize); }
+.control.maximize { background-color: var(--color-maximize); }
 
 .title {
   flex: 1;
@@ -50,7 +65,9 @@ body {
   color: #5f5f5f;
 }
 
-/* App Container */
+/* =====================
+   Layout Container
+===================== */
 .app-container {
   display: flex;
   flex: 1;
@@ -58,52 +75,51 @@ body {
   background-color: var(--macos-bg);
 }
 
-/* Sidebar Styles */
+/* =====================
+   Sidebar
+===================== */
 .sidebar {
   width: 280px;
   background-color: var(--macos-sidebar);
   border-right: 1px solid var(--macos-border);
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease;
   z-index: 100;
+  transition: transform 0.3s ease;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
 }
 
-/* ... (lanjutan styling untuk komponen lainnya) */
-
-/* Responsive Design */
+/* =====================
+   Responsive Design
+===================== */
 @media (max-width: 768px) {
   .sidebar {
     position: fixed;
     height: 100%;
     transform: translateX(-100%);
-    transition: transform 0.3s ease;
   }
-  
   .sidebar.open {
     transform: translateX(0);
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
   }
-  
+
   .hamburger-menu {
     display: block;
   }
-  
+
   .settings-panel {
     position: fixed;
     height: 100%;
-    z-index: 101;
     width: 100%;
     max-width: 100%;
+    z-index: 101;
     transform: translateX(100%);
     transition: transform 0.3s ease;
   }
-  
   .settings-panel:not(.hidden) {
     transform: translateX(0);
   }
-  
+
   .message {
     max-width: 90%;
   }
@@ -111,7 +127,7 @@ body {
   .pricing-plans {
     flex-direction: column;
   }
-  
+
   .chat-header {
     padding-left: 60px;
   }
