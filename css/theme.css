@@ -1,16 +1,21 @@
-/* CSS Variables for Theming */
+/* =====================
+   CSS Variables - Light Theme (Default)
+===================== */
 :root {
+  /* macOS Colors */
   --macos-bg: #f5f5f7;
   --macos-header: #ffffff;
   --macos-sidebar: #f2f2f7;
   --macos-card: #ffffff;
-  --macos-text: #1d1d1f;
   --macos-chat-input: #f0f0f0;
+  --macos-text: #1d1d1f;
   --macos-text-secondary: #86868b;
   --macos-border: #e5e5e7;
   --macos-accent: #007aff;
   --macos-hover: #f2f2f7;
   --macos-menu: rgba(255, 255, 255, 0.8);
+
+  /* iOS Colors */
   --ios-bg: #f2f2f7;
   --ios-card: #ffffff;
   --ios-text: #000000;
@@ -18,19 +23,26 @@
   --ios-border: #c6c6c8;
   --ios-accent: #007aff;
   --ios-hover: #e6e6e7;
+
+  /* Effects */
   --blur-effect: saturate(180%) blur(20px);
   --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+  /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 18px;
   --radius-xl: 24px;
-  --tran-03: all 0.3s ease;
-  --tran-04: all 0.3s ease;
-  --tran-05: all 0.3s ease;
-  --transition: 0.3s ease;
+
+  /* Transition */
+  --transition: all 0.3s ease;
 }
 
+/* =====================
+   CSS Variables - Dark Theme
+===================== */
 [data-theme="dark"] {
+  /* macOS Colors */
   --macos-bg: #1c1c1e;
   --macos-header: #2c2c2e;
   --macos-sidebar: #2c2c2e;
@@ -42,6 +54,8 @@
   --macos-accent: #0a84ff;
   --macos-hover: #3a3a3c;
   --macos-menu: rgba(44, 44, 46, 0.8);
+
+  /* iOS Colors */
   --ios-bg: #000000;
   --ios-card: #1c1c1e;
   --ios-text: #ffffff;
@@ -51,21 +65,23 @@
   --ios-hover: #2c2c2e;
 }
 
-/* Custom theme classes */
+/* =====================
+   Theme Classes
+===================== */
 .light-theme {
-  /* Light theme akan menggunakan variabel :root default */
+  /* Uses default :root (Light Theme) */
 }
 
 .dark-theme {
-  /* Dark theme akan menggunakan variabel [data-theme="dark"] */
+  /* Uses [data-theme="dark"] */
 }
 
 .auto-theme {
-  /* Auto theme akan menggunakan preferensi sistem */
+  /* Follows system preference */
 }
 
 @media (prefers-color-scheme: dark) {
   .auto-theme {
-    /* Gunakan variabel dark theme jika sistem dalam mode gelap */
+    /* Applies dark theme when system is in dark mode */
   }
 }
