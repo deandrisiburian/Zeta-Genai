@@ -2,67 +2,45 @@
    CSS Variables - Light Theme (Default)
 ===================== */
 :root {
-  /* macOS Colors */
   --macos-bg: #f5f5f7;
-  --macos-header: #ffffff;
-  --macos-sidebar: #f2f2f7;
+  --macos-header: rgba(255,255,255,0.7);
+  --macos-sidebar: rgba(250,250,252,0.75);
   --macos-card: #ffffff;
-  --macos-chat-input: #f0f0f0;
+  --macos-chat-input: rgba(250,250,250,0.85);
   --macos-text: #1d1d1f;
   --macos-text-secondary: #86868b;
   --macos-border: #e5e5e7;
   --macos-accent: #007aff;
-  --macos-hover: #f2f2f7;
-  --macos-menu: rgba(255, 255, 255, 0.8);
+  --macos-hover: rgba(0,0,0,0.05);
+  --macos-msg-content: rgba(240,240,240,0.9);
+  --macos-u-msg-content: #007aff;
 
-  /* iOS Colors */
-  --ios-bg: #f2f2f7;
-  --ios-card: #ffffff;
-  --ios-text: #000000;
-  --ios-text-secondary: #8a8a8e;
-  --ios-border: #c6c6c8;
-  --ios-accent: #007aff;
-  --ios-hover: #e6e6e7;
-
-  /* Effects */
   --blur-effect: saturate(180%) blur(20px);
-  --shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
 
-  /* Radius */
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 18px;
   --radius-xl: 24px;
 
-  /* Transition */
-  --transition: all 0.3s ease;
+  --tran-03: all 0.3s ease;
 }
 
-/* =====================
-   CSS Variables - Dark Theme
-===================== */
 [data-theme="dark"] {
-  /* macOS Colors */
   --macos-bg: #1c1c1e;
-  --macos-header: #2c2c2e;
-  --macos-sidebar: #2c2c2e;
+  --macos-header: rgba(44,44,46,0.7);
+  --macos-sidebar: rgba(36,36,38,0.75);
   --macos-card: #2c2c2e;
-  --macos-chat-input: #3a3a3a;
+  --macos-chat-input: rgba(58,58,60,0.85);
   --macos-text: #ffffff;
   --macos-text-secondary: #98989d;
   --macos-border: #404044;
   --macos-accent: #0a84ff;
-  --macos-hover: #3a3a3c;
-  --macos-menu: rgba(44, 44, 46, 0.8);
+  --macos-hover: rgba(255,255,255,0.08);
+  --macos-msg-content: rgba(60,60,62,0.9);
+  --macos-u-msg-content: #0a84ff;
 
-  /* iOS Colors */
-  --ios-bg: #000000;
-  --ios-card: #1c1c1e;
-  --ios-text: #ffffff;
-  --ios-text-secondary: #8e8e93;
-  --ios-border: #38383a;
-  --ios-accent: #0a84ff;
-  --ios-hover: #2c2c2e;
+  --shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 /* =====================
