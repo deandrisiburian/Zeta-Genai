@@ -67,7 +67,10 @@ function toggleSettings() {
   const settingsPanel = document.getElementById('settings-panel');
   settingsPanel.classList.toggle('hidden');
 }
-
+function toggleCustomModel() {
+  const customModel = document.getElementById('custom-model-modal');
+  customModel.classList.toggle('hidden');
+}
 /**
  * Menampilkan/menyembunyikan sidebar pada perangkat mobile
  */
@@ -152,11 +155,10 @@ function updateUIForUserState() {
     
     // Perbarui tombol upgrade
     if (userState.isPremium) {
-      upgradeSidebarBtn.innerHTML = '<i class="fas fa-crown"></i> Pengguna Premium';
       upgradeSidebarBtn.disabled = true;
       upgradeSidebarBtn.style.opacity = '0.7';
     } else {
-      upgradeSidebarBtn.innerHTML = '<i class="fas fa-crown"></i> Upgrade ke Pro';
+      upgradeSidebarBtn.innerHTML = '<svg class="icon-PIRQLq" width="20" height="20" fill="none" viewBox="0 0 24 24" style="min-width: 20px; min-height: 20px;"><path fill="currentColor" d="M9.371 4.005a.892.892 0 0 0-1.165.483L7.555 6.06a2.767 2.767 0 0 1-1.497 1.494l-1.57.65a.892.892 0 0 0-.483 1.166l.001.001.649 1.57v.001c.28.678.281 1.439.001 2.117l-.65 1.57a.892.892 0 0 0 .483 1.164l1.57.65.001.001c.678.282 1.216.82 1.496 1.498l.65 1.57a.892.892 0 0 0 1.165.483l1.57-.65a2.767 2.767 0 0 1 2.117-.001l1.57.65a.892.892 0 0 0 1.165-.482l.65-1.571h.001a2.767 2.767 0 0 1 1.498-1.496l1.57-.65a.892.892 0 0 0 .482-1.166l-.648-1.568v-.001a2.764 2.764 0 0 1-.002-2.12l.65-1.569a.892.892 0 0 0-.482-1.165l-1.572-.651a2.767 2.767 0 0 1-1.495-1.495l-.65-1.57v-.001a.892.892 0 0 0-1.166-.483l-1.57.648h-.001a2.767 2.767 0 0 1-2.116.002l-1.57-.65Zm8.79 1.298a.892.892 0 0 0 .498.52l1.57.65a2.767 2.767 0 0 1 1.498 3.616l-.65 1.57a.89.89 0 0 0 0 .681l.65 1.57a2.768 2.768 0 0 1-1.498 3.617l-1.57.65a.892.892 0 0 0-.483.482l-.65 1.57a2.767 2.767 0 0 1-3.616 1.498l-1.569-.65a.892.892 0 0 0-.682 0l-1.572.65a2.767 2.767 0 0 1-3.612-1.496l-.652-1.572a.892.892 0 0 0-.481-.483l-1.57-.65a2.767 2.767 0 0 1-1.499-3.614l.65-1.57a.892.892 0 0 0 0-.682l-.65-1.572a2.767 2.767 0 0 1 1.498-3.616l1.57-.65a.892.892 0 0 0 .483-.481V5.34l.65-1.57a2.767 2.767 0 0 1 3.615-1.497l1.569.65c.219.09.464.09.682 0l.002-.001 1.57-.648a2.767 2.767 0 0 1 3.615 1.497l.634 1.532Zm-2.348 3.784a.938.938 0 0 1 0 1.326l-4.05 4.05a.937.937 0 0 1-1.326 0l-1.8-1.8a.937.937 0 1 1 1.326-1.326l1.137 1.137 3.387-3.387a.937.937 0 0 1 1.326 0Z" clip-rule="evenodd" fill-rule="evenodd" data-follow-fill="#6841EA"></path></svg> Tingkatkan ke Pro';
       upgradeSidebarBtn.disabled = false;
       upgradeSidebarBtn.style.opacity = '1';
     }
@@ -170,7 +172,7 @@ function updateUIForUserState() {
     logoutBtn.classList.add('hidden');
     
     // Perbarui tombol upgrade
-    upgradeSidebarBtn.innerHTML = '<i class="fas fa-crown"></i> Upgrade ke Pro';
+    upgradeSidebarBtn.innerHTML = '<svg class="icon-PIRQLq" width="20" height="20" fill="none" viewBox="0 0 24 24" style="min-width: 20px; min-height: 20px;"><path fill="currentColor" d="M9.371 4.005a.892.892 0 0 0-1.165.483L7.555 6.06a2.767 2.767 0 0 1-1.497 1.494l-1.57.65a.892.892 0 0 0-.483 1.166l.001.001.649 1.57v.001c.28.678.281 1.439.001 2.117l-.65 1.57a.892.892 0 0 0 .483 1.164l1.57.65.001.001c.678.282 1.216.82 1.496 1.498l.65 1.57a.892.892 0 0 0 1.165.483l1.57-.65a2.767 2.767 0 0 1 2.117-.001l1.57.65a.892.892 0 0 0 1.165-.482l.65-1.571h.001a2.767 2.767 0 0 1 1.498-1.496l1.57-.65a.892.892 0 0 0 .482-1.166l-.648-1.568v-.001a2.764 2.764 0 0 1-.002-2.12l.65-1.569a.892.892 0 0 0-.482-1.165l-1.572-.651a2.767 2.767 0 0 1-1.495-1.495l-.65-1.57v-.001a.892.892 0 0 0-1.166-.483l-1.57.648h-.001a2.767 2.767 0 0 1-2.116.002l-1.57-.65Zm8.79 1.298a.892.892 0 0 0 .498.52l1.57.65a2.767 2.767 0 0 1 1.498 3.616l-.65 1.57a.89.89 0 0 0 0 .681l.65 1.57a2.768 2.768 0 0 1-1.498 3.617l-1.57.65a.892.892 0 0 0-.483.482l-.65 1.57a2.767 2.767 0 0 1-3.616 1.498l-1.569-.65a.892.892 0 0 0-.682 0l-1.572.65a2.767 2.767 0 0 1-3.612-1.496l-.652-1.572a.892.892 0 0 0-.481-.483l-1.57-.65a2.767 2.767 0 0 1-1.499-3.614l.65-1.57a.892.892 0 0 0 0-.682l-.65-1.572a2.767 2.767 0 0 1 1.498-3.616l1.57-.65a.892.892 0 0 0 .483-.481V5.34l.65-1.57a2.767 2.767 0 0 1 3.615-1.497l1.569.65c.219.09.464.09.682 0l.002-.001 1.57-.648a2.767 2.767 0 0 1 3.615 1.497l.634 1.532Zm-2.348 3.784a.938.938 0 0 1 0 1.326l-4.05 4.05a.937.937 0 0 1-1.326 0l-1.8-1.8a.937.937 0 1 1 1.326-1.326l1.137 1.137 3.387-3.387a.937.937 0 0 1 1.326 0Z" clip-rule="evenodd" fill-rule="evenodd" data-follow-fill="#6841EA"></path></svg> Tingkatkan ke Pro';
     upgradeSidebarBtn.disabled = false;
     upgradeSidebarBtn.style.opacity = '1';
   }

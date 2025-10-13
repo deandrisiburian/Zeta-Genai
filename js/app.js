@@ -98,7 +98,6 @@ function setupEventListeners() {
       }
     });
   }
-  
   // Event listener menu hamburger
   if (hamburgerMenu) {
     hamburgerMenu.addEventListener('click', toggleSidebar);
@@ -140,7 +139,7 @@ async function handleSubmit(e) {
 
   // Periksa apakah model hanya untuk premium bagi pengguna non-premium
   if (!userState.isPremium && isPremiumModel(currentModel)) {
-    showNotification('Model ini hanya tersedia untuk pengguna premium. Upgrade untuk mengakses.', 'error');
+    showNotification('Model ini hanya tersedia untuk pengguna premium. Tingkatkan untuk mengakses.', 'error');
     showUpgradeModal();
     return;
   }
@@ -394,3 +393,58 @@ function showUpgradeModal() {
   document.getElementById('modal-overlay').classList.remove('hidden');
   document.getElementById('upgrade-modal').classList.remove('hidden');
 }
+// Fungsi untuk input suara
+let recognition = null;
+let isRecording = false;
+function toggleVoiceInput() {
+  if (!isRecording) {
+    startVoiceRecognition();
+  } else {
+    stopVoiceRecognition();
+  }
+}
+function startVoiceRecognition() {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    showNotification('Speech recognition is not supported in your browser', 'error');
+    return;
+  }
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  recognition = new SpeechRecognition();
+  recognition.continuous = false;
+  recognition.interimResults = true;
+  recognition.lang = 'en-US';
+  recognition.onstart = function() {
+    isRecording = true;
+    document.getElementById('voice-input-btn').classList.add('recording');
+    showNotification('Listening...', 'info');
+  };
+  recognition.onresult = function(event) {
+    const transcript = Array.from(event.results)
+      .map(result => result[0])
+      .map(result => result.transcript)
+      .join('');
+    userInput.value = transcript;
+    autoResize(userInput);
+  };
+  recognition.onerror = function(event) {
+    showNotification('Error occurred in recognition: ' + event.error, 'error');
+    stopVoiceRecognition();
+  };
+  recognition.onend = function() {
+    stopVoiceRecognition();
+  };
+  recognition.start();
+}
+  function stopVoiceRecognition() {
+  if (recognition) {
+    recognition.stop();
+  }
+  isRecording = false;
+  document.getElementById('voice-input-btn').classList.remove('recording');
+}
+function showModelModal() {
+  closeAllModals();
+  document.getElementById('modal-overlay').classList.remove('hidden');
+  document.getElementById('custom-model-modal').classList.remove('hidden');
+}
+
