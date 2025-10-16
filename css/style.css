@@ -9,7 +9,7 @@ body {
   color: var(--macos-text-default);
   line-height: 1.6;
   overflow: hidden;
-  height: 100vh;
+  height: 99vh;
   display: flex;
   flex-direction: column;
 }
