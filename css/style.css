@@ -1,0 +1,1317 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(45deg, #8e2de2, #4a00e0);
+  color: var(--macos-text-default);
+  line-height: 1.6;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.macos-titlebar {
+  height: 38px;
+  background-color: var(--macos-titlebar);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  -webkit-app-region: drag;
+  border-bottom: 1px solid var(--macos-border);
+}
+.window-controls {
+  display: flex;
+  gap: 8px;
+  -webkit-app-region: no-drag;
+}
+.control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.control.close { background-color: #ff5f56; }
+.control.minimize { background-color: #ffbd2e; }
+.control.maximize { background-color: #27c93f;}
+.tab-manager_anchor {
+  position: absolute;
+  top: calc(50% - 30px);
+  height: 40px;
+  width: 40px;
+  border-radius: 0 50px 50px 0;
+  outline: none;
+  border: none;
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.2);
+  display: none;
+  cursor: pointer;
+  pointer-events: auto;
+  z-index: -1;
+  box-shadow: 4px 0px 30px var(--shadow);
+  z-index: 99;
+  transition: background-color 0.2s;
+}
+.tab-manager_anchor:hover {
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.tab-manager_anchor-bar {
+  height: 60%;
+  width: 4px;
+  background-color: var(--macos-tab-manager-bar);
+  border-radius: 2px;
+}
+.title {
+  flex: 1;
+  text-align: center;
+  font-size: 13px;
+  color: var(--macos-title);
+}
+.app-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  background-color: var(--macos-bg);
+}
+.sidebar {
+  width: 280px;
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 0 25px 25px 0;
+  box-shadow: inset 0 0 20px 10px var(--macos-button-two);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+  z-index: 100;
+}
+.sidebar-header {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: var(--blur-effect);
+  border-radius: 0 25px 25px 0;
+}
+.logo {
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--ios-accent);
+}
+.sidebar-toggle {
+  background: none;
+  color: var(--macos-text-default);
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 8px 4px 8px;
+  border-radius: 20px;
+}
+.sidebar-toggle:hover {
+  backdrop-filter: var(--blur-effect);
+  background-color: var(--macos-button-two);
+}
+.sidebar-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.new-chat-btn {
+  backdrop-filter: var(--blur-effect);
+  color: var(--macos-text-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.new-chat-btn, .upgrade-btn {
+  background-color: var(--macos-button);
+  padding: 10px 16px;
+  margin: 5px 25px;
+  border: none;
+  border-radius: 20px; 
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+  font-size: 14px;
+}
+.new-chat-btn:hover {
+  backdrop-filter: var(--blur-effect);
+  background-color: var(--macos-button-two);
+}
+.upgrade-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  backdrop-filter: var(--blur-effect);
+  gap: 8px;
+}
+.upgrade-btn:disabled {
+  cursor: not-allowed;
+  background: linear-gradient(90deg, #6c757d, #5a6268);
+}
+.chat-history {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px;
+}
+.chat-history h3 {
+  font-size: 13px;
+  color: var(--macos-text-secondary);
+  margin: 16px 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.history-list {
+  display: flex;
+  flex-direction: column;
+}
+.history-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  position: relative;
+  color: var(--macos-text-default);
+  gap: 8px
+}
+.history-item:hover {
+  backdrop-filter: var(--blur-effect);
+  background-color: var(--macos-button);
+}
+.history-item.active {
+  background-color: var(--macos-accent);
+  color: var(--macos-text-default);
+}
+.history-item i {
+  margin-right: 10px;
+  font-size: 14px;
+}
+.history-title {
+  flex: 1;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.delete-chat {
+  background: none;
+  border: none;
+  color: var(--macos-text-default);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+  padding: 4px 4px 2px 4px;
+  border-radius: 25px;
+}
+.history-item:hover .delete-chat {
+  opacity: 1;
+}
+.delete-chat:hover {
+  backdrop-filter: var(--blur-effect);
+  background-color: var(--macos-button-two);
+  color: var(--macos-text-default);
+}
+.sidebar-footer {
+  padding: 10px;
+  backdrop-filter: var(--blur-effect);
+  border-radius: 0 25px 25px 0;
+}
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--macos-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.user-info {
+  flex: 1;
+}
+.user-name {
+  font-size: 14px;
+  font-weight: 500;
+  display: block;
+}
+.user-status {
+  font-size: 12px;
+  color: var(--macos-text-secondary);
+}
+.settings-btn {
+  background: none;
+  border: none;
+  color: var(--macos-text-default);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px 4px 0 4px;
+  border-radius: 25px;
+}
+.settings-btn:hover {
+  backdrop-filter: var(--blur-effect);
+  background-color: var(--macos-button-two);
+}
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+.chat-container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.welcome-screen, .chat-screen {
+  height: 100%;
+  display: flex;
+  scrollbar-color: var(--macos-accent);
+  flex-direction: column;
+}
+.hidden {
+  display: none !important;
+}
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 20px;
+}
+.logo-large {
+  font-size: 64px;
+  color: var(--macos-accent);
+  margin-bottom: 24px;
+}
+.welcome-content h1 {
+  font-size: 28px;
+  margin-bottom: 12px;
+  font-weight: 400;
+  color: var(--macos-text);
+}
+.chat-header {
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.02);
+  box-shadow: inset 0 0 20px 20px var(--macos-button-two);
+  position: fixed;
+  gap: 25px;
+  align-self: center;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+  margin: 5px 5px 0 5px;
+}
+.current-chat-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.current-chat-info h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--macos-text);
+}
+.model-badge {
+  background-color: #e8f0fe;
+  color: var(--macos-accent);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.chat-actions {
+  backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 25px;
+  padding: 0 1px 0 1px;
+  display: flex;
+  gap: 4px;
+}
+.action-btn {
+  background: none;
+  border: none;
+  color: var(--macos-text-secondary);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 25px;
+}
+.action-btn:hover {
+  color: var(--macos-text);
+  backdrop-filter: var(--blur-effect);
+  background-color: var(--macos-button-two);
+}
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 60px 16px 90px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.message {
+  display: flex;
+  gap: 12px;
+  max-width: 80%;
+  position: relative;
+}
+.user-message {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+.ai-message {
+  align-self: flex-start;
+}
+.disclaimer {
+  text-align: center;
+}
+.avatar {
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.user-avatar {
+  background-color: var(--ios-accent);
+  color: white;
+}
+.ai-avatar {
+  background-color: var(--macos-hover);
+  color: var(--macos-text);
+}
+.message-content {
+  background-color: var(--macos-msg-content);
+  border-radius: 18px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-end;
+  max-width: 100%;
+  position: relative;
+}
+.ai-message .message-content {
+  background-color: var(--macos-msg-content);
+  border-radius: 18px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-end;
+  max-width: 100%;
+  position: relative;
+}
+.ai-message::after {
+  content: '';
+  position: absolute;
+  rotate: 20deg;
+  top: auto;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid var(--macos-msg-content);
+}
+.user-message .message-content {
+  background-color: var(--macos-u-msg-content);
+  color: white;
+  border-radius: 18px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.user-message::after {
+  content: '';
+  position: absolute;
+  rotate: 160deg;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid var(--macos-u-msg-content);
+}
+.message-text {
+  width: 100%;
+  line-height: 1.5;
+  word-wrap: break-word;
+}
+.message-time {
+  font-size: 11px;
+  color: var(--macos-text-secondary);
+  margin-top: 4px;
+  text-align: right;
+}
+.user-message .message-time {
+  color: rgba(255, 255, 255, 0.7);
+}
+.loading .message-content {
+  background-color: var(--macos-msg-content);
+  padding: 16px;
+}
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.typing-indicator span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--macos-msg-content);
+  animation: typing 1.4s infinite ease-in-out;
+}
+.typing-indicator span:nth-child(1) { animation-delay: 0s; }
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s;}
+@keyframes typing {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-5px); }
+}
+.message-actions {
+  position: absolute;
+  bottom: -30px;
+  background: var(--macos-card);
+  border: 1px solid var(--macos-border);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: none;
+  z-index: 10;
+}
+.user-message .message-actions {
+  right: auto;
+  left: auto;
+}
+.message:hover .message-actions {
+  display: flex;
+  flex-direction: row;
+}
+#message-edit {
+  background: transparent;
+  color: var(--macos-text);
+  border: none;
+  resize: none;
+  outline: none;
+  padding: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+}
+.message-action {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  color: var(--macos-text);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.2s;
+}
+.message-action:hover {
+  background-color: var(--macos-hover);
+}
+.message-action:first-child {
+  border-radius: 8px 0 0 8px;
+}
+.message-action:last-child {
+  border-radius: 0 8px 8px 0;
+}
+.chat-form-container {
+  align-self: center;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px 18px 12px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+#chat-form {
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 0 20px 9px var(--macos-button-two);
+  border: none;
+  border-radius: var(--radius-xl);
+  padding-bottom: 6px;
+  padding-left: 6px;
+  display: flex;
+  align-items: flex-end;
+}
+#user-input {
+  flex: 1;
+  border: none;
+  resize: none;
+  background: transparent;
+  font-size: 16px;
+  color: var(--macos-text);
+  outline: none;
+  padding: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+  font-family: inherit;
+}
+.chat-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 6px;
+}
+.chat-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--macos-text-secondary);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.chat-btn:hover {
+  backdrop-filter: var(--blur-effect);
+  background-color: var(--macos-button-two);
+  color: var(--macos-text);
+}
+.send-btn {
+  background-color: var(--ios-accent);
+  color: white;
+}
+.send-btn:hover {
+  background-color: #0052a3;
+  opacity: 0.9;
+}
+.input-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 18px;
+  font-size: 12px;
+  color: var(--macos-text-secondary);
+}
+.model-info {
+  font-weight: 500;
+}
+.settings-panel {
+  width: 320px;
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 25px 0 0 25px;
+  box-shadow: inset 0 0 20px 10px var(--macos-button-two);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #353535 transparent;
+  transition: all 0.3s ease;
+}
+.settings-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 20px;
+  border: 2px solid var(--macos-border);
+  margin: 5px 5px 0 5px;
+}
+.settings-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--macos-text);
+}
+.close-settings {
+  background: none;
+  border: none;
+  color: var(--macos-text-secondary);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  border-radius: 4px;
+}
+.close-settings:hover {
+  background-color: var(--macos-hover);
+}
+.settings-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+.setting-section {
+  margin-bottom: 24px;
+}
+.setting-section h3 {
+  font-size: 14px;
+  color: var(--macos-text-secondary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.setting-item {
+  margin-bottom: 16px;
+}
+.setting-item-p {
+  margin: 0;
+}
+.setting-item label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--macos-text);
+}
+#model-select {
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  border-radius: 8px;
+  backdrop-filter: blur(20px) saturate(250%);
+  background-color: var(--macos-button-two);
+  font-size: 14px;
+  color: var(--macos-text);
+}
+#model-select option:disabled {
+  color: var(--macos-text-secondary);
+  background-color: var(--macos-hover);
+}
+.theme-options {
+  display: flex;
+  gap: 12px;
+  flex-direction: row;
+  justify-content: center;
+}
+.theme-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+}
+.theme-option:hover {
+  backdrop-filter: var(--blur-effect);
+  background-color: var(--macos-button-two);
+}
+.theme-option.active {
+  background-color: var(--macos-accent);
+  backdrop-filter: var(--blur-effect);
+  color: white;
+}
+.theme-preview {
+  width: 100%;
+  height: 25%;
+  border-radius: 6px;
+  border: 1px solid var(--macos-border);
+  overflow: hidden;
+}
+.theme-review {
+  width: 40px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1px solid var(--macos-border);
+  overflow: hidden;
+}
+.light-theme {
+  background-color: #f5f5f7;
+}
+.dark-theme {
+  background-color: #333;
+}
+.auto-theme {
+  display: flex;
+}
+.half-light {
+  flex: 1;
+  background-color: #f5f5f7;
+}
+.half-dark {
+  flex: 1;
+  background-color: #333;
+}
+.account-btn {
+  width: 100%;
+  padding: 10px;
+  backdrop-filter: var(--blur-effect);
+  background-color: var(--macos-button);
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+  color: var(--macos-text);
+}
+.account-btn:hover {
+  background-color: var(--macos-button-two);
+}
+.about-text  {
+    position: fixed;
+    width: 100%;
+    right: calc(-1%);
+    bottom: 0px;
+    display: flex;
+    font-size: 14px;
+    box-shadow: 0 0 20px 9px var(--macos-button-two);
+    background-color: rgba(255, 255, 255, 0.02);
+    border-radius: 20px 20px 0 0;
+    margin: 5px 4px 0 0px;
+    backdrop-filter: blur(20px) saturate(250%);
+    padding: 10px;
+    color: var(--macos-text-secondary);
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+.social-links {
+  display: flex;
+  gap: 12px;
+}
+.social-links a {
+  color: var(--macos-text-secondary);
+  text-decoration: none;
+  font-size: 16px;
+}
+.social-links a:hover {
+  color: var(--macos-accent);
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+#login-modal {
+  background-color: var(--macos-card);
+  border-radius: 12px;
+  width: 70%;
+  max-width: 100%;
+  height: 50%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+.modal {
+  background-color: var(--macos-card);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+.modal-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--macos-border);
+}
+.modal-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--macos-text);
+}
+.close-modal {
+  background: none;
+  border: none;
+  color: var(--macos-text-secondary);
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 4px;
+}
+.close-modal:hover {
+  background-color: var(--macos-hover);
+}
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+}
+modal-footer {
+  background-color: transparent;
+  text-align: center;
+}
+.login-step p {
+  margin-bottom: 16px;
+  color: var(--macos-text-secondary);
+}
+.login-step input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--macos-border);
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 16px;
+  background-color: var(--macos-card);
+  color: var(--macos-text);
+}
+.modal-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+.modal-btn-free {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: not-allowed;
+  font-size: 14px;
+  font-weight: 500;
+}
+.modal-btn.first {
+  background-color: var(--macos-border-plan-two);
+  color: white;
+ }
+.modal-btn.first:hover {
+  background-color: var(--macos-border-plan-trhee);
+ }
+.modal-btn.primary {
+  background-color: var(--macos-accent);
+  color: white;
+  margin-right: 8px;
+}
+.modal-btn.primary:hover {
+  background-color: #0052a3;
+}
+.modal-btn.secondary {
+  background-color: var(--macos-hover);
+  color: var(--macos-text);
+}
+.modal-btn-free.secondary {
+  color: var(--macos-text);
+}
+.modal-btn.secondary:hover {
+  background-color: var(--macos-border);
+}
+.pricing-plans {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.top-content-plan {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.top-plan {
+  background-color: var(--macos-bg-prime);
+  border: 1px solid var(--macos-accent);
+  border-radius: 8px;
+  color: var(--macos-accent);
+  padding: 2px 5px;
+}
+.plan {
+  flex: 1;
+  min-width: 200px;
+  padding: 20px;
+  border: 1px solid var(--macos-border);
+  border-radius: 12px;
+  background-color: var(--macos-card);
+}
+.plan-free {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.plan.student {
+  background-color: var(--macos-border-plan);
+  border: 1px solid var(--macos-border-plan-two);
+}
+.plan.prime {
+  border-color: var(--macos-accent);
+  background-color: var(--macos-bg-prime);
+}
+.plan h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color: var(--macos-text);
+}
+.plan-price {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--macos-accent);
+}
+.plan-price.student {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--macos-border-plan-two);
+}
+.plan-price span {
+  font-size: 14px;
+  font-weight: normal;
+  color: var(--macos-text-secondary);
+}
+.plan-features {
+  list-style: none;
+  margin-bottom: 20px;
+  text-align: left;
+}
+.plan-features.free {
+  list-style: none;
+  margin-bottom: 0;
+  text-align: left;
+}
+.plan-features li {
+  padding: 6px 0;
+  font-size: 14px;
+  color: var(--macos-text);
+}
+.plan-features li:before {
+  content: "✓";
+  color: var(--macos-accent);
+  margin-right: 8px;
+}
+.plan-features.student li:before {
+  content: "✓";
+  color: var(--macos-border-plan-two);
+  margin-right: 8px;
+}
+.notification-container {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.notification {
+  padding: 12px 16px;
+  border-radius: 8px;
+  background-color: var(--macos-card);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideIn 0.3s ease;
+  color: var(--macos-text);
+}
+.notification.info {
+  border-left: 5px solid var(--macos-accent);
+}
+.notification.success {
+  border-left: 5px solid #34c759;
+}
+.notification.error {
+  border-left: 5px solid #ff3b30;
+}
+.notification button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--macos-text-secondary);
+}
+@keyframes slideIn {
+  from { transform: translateX(100px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+  display: none;
+}
+.profile-picture-section {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.profile-picture-preview {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 15px;
+  border: 3px solid var(--macos-border);
+}
+.profile-picture-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.upload-area {
+  border: 2px dashed var(--macos-border);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  margin-bottom: 20px;
+}
+.upload-area:hover, .upload-area.dragover {
+  border-color: var(--macos-accent);
+}
+.upload-area i {
+  font-size: 48px;
+  color: var(--macos-text-secondary);
+  margin-bottom: 10px;
+}
+.upload-area p {
+  margin-bottom: 5px;
+  color: var(--macos-text-secondary);
+}
+.upload-limit {
+  font-size: 12px;
+  color: var(--macos-text-secondary);
+}
+.uploaded-files {
+  margin-bottom: 20px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.uploaded-file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid var(--macos-border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  background-color: var(--macos-card);
+}
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.file-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--macos-text);
+}
+.file-size {
+  font-size: 12px;
+  color: var(--macos-text-secondary);
+}
+.remove-file {
+  background: none;
+  border: none;
+  color: var(--macos-text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+}
+.remove-file:hover {
+  color: #ff3b30;
+}
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+#voice-input-btn.recording {
+  color: #ff3b30;
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+#custom-theme-preview {
+  border: 1px solid var(--macos-border);
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: var(--macos-card);
+}
+.preview-message {
+  display: flex;
+  margin-bottom: 15px;
+}
+.user-preview {
+  justify-content: flex-end;
+}
+.preview-message .avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin: 0 8px;
+}
+.preview-message .message-content {
+  padding: 8px 12px;
+  border-radius: 12px;
+  max-width: 70%;
+  font-size: 12px;
+}
+.user-preview .message-content {
+  background-color: var(--macos-accent);
+  color: white;
+  border-radius: 15px 15px 5px 15px;  
+}
+.ai-preview .message-content {
+  background-color: var(--macos-hover);
+  color: var(--macos-text);
+  border-radius: 15px 15px 15px 5px;
+}
+#custom-model-modal {
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.02);
+  box-shadow: inset 0 0 20px 20px var(--macos-button-two);
+  cursor: default;
+  border-radius: 25px 25px 25px 25px;
+  height: auto;
+  width: auto;
+  margin: 5px 0 0 0;
+  padding: 3px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+}
+#custom-model {
+  padding: 5px;
+}
+.model-modal {
+  background-color: var(--blur-effect);
+  color: var(--macos-text);
+  padding: 9px 8px 6px 8px;
+  border-radius: 25px;
+  border: none;
+}
+.model-modal:hover {
+  cursor: pointer;
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+input[type="color"] {
+  border-color: var(--blur-effect);
+  border-image: auto;
+  border-radius: 5px;
+}
+body.fullscreen {
+  overflow: hidden;
+}
+body.fullscreen .app-container {
+  height: 100vh;
+}
+body.fullscreen .sidebar {
+  position: fixed;
+  transform: translateX(-100%);
+  transition: left 0.3s ease;
+}
+body.fullscreen .sidebar.open {
+  transform: translateX(0);
+}
+body.fullscreen .main-content {
+  width: 100%;
+}
+body.fullscreen .tab-manager_anchor {
+  left: 0;
+}
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    height: 100%;
+    
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+    top: 0;
+  }
+  .sidebar-overlay {
+    display: block;
+  }
+  .settings-panel {
+    position: fixed;
+    border-radius: 0;
+    height: 100%;
+    z-index: 101;
+    width: 100%;
+    max-width: 100%;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  .settings-panel:not(.hidden) {
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+    top: 0;
+  }
+  .settings-header {
+    border-radius: 20px;
+    border: 2px solid var(--macos-border);
+    margin: 5px 5px 0 5px;
+  }
+  .tab-manager_anchor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: calc(50% - -160px);
+  }  
+  .message {
+    max-width: 90%;
+  }
+  .pricing-plans {
+    flex-direction: column;
+  }
+}
+.send-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.send-btn:disabled:hover {
+  background-color: var(--macos-accent);
+}
+.preview-auth-modal, #auth-buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 10px;
+}
