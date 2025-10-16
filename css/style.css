@@ -557,7 +557,7 @@ body {
   padding: 12px 12px 18px 12px;
   width: 100%;
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0 0 20px 0;
 }
 #chat-form {
   backdrop-filter: blur(16px) saturate(180%);
