@@ -5,12 +5,12 @@
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen)](https://nodejs.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Prettier](https://img.shields.io/badge/code%20style-prettier-ff69b4.svg)](https://prettier.io)
-[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/username/zeta-genai/actions)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen)](https://github.com/deandrisiburian/zeta-genai/actions)
 [![Discord](https://img.shields.io/badge/discord-join-7289da.svg)](https://discord.gg/example)
 
 *Intelligent Conversations, Limitless Possibilities*
 
-[🚀 Quick Start](#quick-start) • [📚 Documentation](https://docs.zeta-genai.com) • [💡 Examples](#examples) • [🤝 Contributing](#contributing)
+[🚀 Quick Start](#quick-start) • [🤝 Contributing](#contributing)
 
 </div>
 
